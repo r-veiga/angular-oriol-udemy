@@ -1,0 +1,13 @@
+01 - Creación del proyecto con Angular CLI. Comando desde el shell de PowerShell (NO Angular Routing, CSS styling): 
+    > cd "C:\Users\vero9003\vero9003.fichs_temporales\_cursos\UDEMY Oriol - Componentes Angular"
+    > ng new learn-angular-components
+
+02 - Arranco el servidor embebido para desarrollo que me aporta Angular CLI 
+    > cd ./learn-angular-components
+    > ng serve --port 31313
+
+03 - Cambia el html del componente AppComponent: "\learn-angular-components\src\app\app.component.html" 
+     Redúcelo a <H1>hello world</H1>
+
+04 - Crea componente barra de progreso
+     > ng g component ProgressBar
