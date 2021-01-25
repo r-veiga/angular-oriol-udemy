@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { ProgressBarComponent } from './progress-bar/progress-bar.component'; 
+import { CountdownComponent } from './countdown/countdown.component';
 
 @Component({
   selector: 'app-root',

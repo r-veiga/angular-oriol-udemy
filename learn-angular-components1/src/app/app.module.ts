@@ -8,8 +8,8 @@ import { CountdownComponent } from './countdown/countdown.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ProgressBarComponent,
-    CountdownComponent
+    CountdownComponent,
+    ProgressBarComponent
   ],
   imports: [
     BrowserModule
