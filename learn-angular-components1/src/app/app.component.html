@@ -1,4 +1,10 @@
 <div>
-  <app-progress-bar progress="30"></app-progress-bar>
-  <app-countdown init="15"></app-countdown>
+  <app-progress-bar 
+    [progress]="porcentualCounterProgress">
+  </app-progress-bar>
+  <app-countdown
+    [init]="totalCountdown"
+    (onDecrease)="updateProgress($event)"
+    (onComplete)="countdownFinished()">
+  </app-countdown>
 </div>

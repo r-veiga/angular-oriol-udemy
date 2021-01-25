@@ -9,4 +9,17 @@ import { CountdownComponent } from './countdown/countdown.component';
 })
 export class AppComponent {
   title = 'learn-angular-components1';
+
+  porcentualCounterProgress:number = 0;
+  totalCountdown:number = 15;
+
+  constructor() { }
+
+  updateProgress($event) {
+    this.porcentualCounterProgress = (this.totalCountdown - $event)/this.totalCountdown * 100; 
+  }
+
+  countdownFinished() {
+    console.log("Finalizada la cuenta del componente");
+  }
 }
