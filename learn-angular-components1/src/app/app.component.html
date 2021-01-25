@@ -2,9 +2,14 @@
   <app-progress-bar 
     [progress]="porcentualCounterProgress">
   </app-progress-bar>
-  <app-countdown
+  <app-countdown #countdownReference
     [init]="totalCountdown"
     (onDecrease)="updateProgress($event)"
     (onComplete)="countdownFinished()">
   </app-countdown>
+  <button
+    (click)="countdownReference.startCountdown(); porcentualCounterProgress=0;"
+  >
+    RESTART
+  </button>
 </div>
