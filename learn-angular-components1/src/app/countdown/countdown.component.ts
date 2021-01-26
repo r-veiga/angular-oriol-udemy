@@ -1,10 +1,10 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, OnDestroy, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-countdown',
   templateUrl: './countdown.component.html',
   styleUrls: ['./countdown.component.css']
 })
-export class CountdownComponent implements OnDestroy, OnInit {
+export class CountdownComponent implements OnChanges, OnDestroy, OnInit {
 
   @Output() onDecrease = new EventEmitter<number>();
   @Output() onComplete = new EventEmitter<void>();
@@ -15,6 +15,11 @@ export class CountdownComponent implements OnDestroy, OnInit {
   private countdownTimerRef:any = null;
 
   constructor() { }
+
+  ngOnChanges(changes):void {
+    console.log("init value from ", changes.init.previousValue, " is updated to: ", changes.init.currentValue);
+    this.startCountdown();
+  }
 
   ngOnDestroy():void {
     this.killMyTimer(); // prevent memory leaks
