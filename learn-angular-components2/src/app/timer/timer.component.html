@@ -1,5 +1,5 @@
 <div class="timer">
-  <app-progress-bar [progress]="(init-(timerService.countdown$ | async))/init*100"></app-progress-bar>
+  <app-progress-bar [progress]="progress"></app-progress-bar>
 
   <app-display [time]="timerService.countdown$ | async"></app-display>
 
