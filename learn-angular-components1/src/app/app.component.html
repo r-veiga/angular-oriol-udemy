@@ -1,15 +1,19 @@
 <div>
-  <app-progress-bar 
-    [progress]="porcentualCounterProgress">
-  </app-progress-bar>
+  <app-progress-bar [progress]="porcentualCounterProgress"> </app-progress-bar>
+
   <app-countdown #countdownReference
     [init]="totalCountdown"
     (onDecrease)="updateProgress($event)"
     (onComplete)="countdownFinished()">
   </app-countdown>
-  <button
-    (click)="countdownReference.startCountdown(); porcentualCounterProgress=0;"
-  >
+
+  <div class="initInput">
+    <label for="totalCountdownInit">Init on: </label>
+    <input type="text" id="totalCountdownInit" [(ngModel)]="totalCountdown">
+  </div>
+  
+  <button (click)="countdownReference.startCountdown(); porcentualCounterProgress=0;" >
     RESTART
   </button>
+
 </div>
