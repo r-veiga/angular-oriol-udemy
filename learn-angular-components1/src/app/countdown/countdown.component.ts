@@ -1,10 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 @Component({
   selector: 'app-countdown',
   templateUrl: './countdown.component.html',
   styleUrls: ['./countdown.component.css']
 })
-export class CountdownComponent implements OnInit {
+export class CountdownComponent implements OnDestroy, OnInit {
 
   @Output() onDecrease = new EventEmitter<number>();
   @Output() onComplete = new EventEmitter<void>();
@@ -15,6 +15,10 @@ export class CountdownComponent implements OnInit {
   private countdownTimerRef:any = null;
 
   constructor() { }
+
+  ngOnDestroy():void {
+    this.killMyTimer(); // prevent memory leaks
+  }
 
   ngOnInit() {
     this.startCountdown();
@@ -36,11 +40,11 @@ export class CountdownComponent implements OnInit {
       this.countdownTimerRef = null;
     }
   }
-  
+
   processCountdown() {
     this.onDecrease.emit(this.countdownCounter);
     console.log("Emisión de evento REGRESSIVE COUNT STEP. Valor actual: ", this.countdownCounter);
-
+    
     if (this.countdownCounter == 0) {
       this.onComplete.emit();
       console.log("--CUENTA FINALIZADA, el valor ha bajado hasta CERO--");
