@@ -12,25 +12,37 @@ export class TimerComponent implements OnInit, OnDestroy {
 
   private countdownTimerRef:any = null;
   public countdown:number = 0;
+  public paused:boolean = true;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.startCountdown();
+    if(this.init && this.init > 0){
+      this.countdown = this.init;
+    }
   }
 
   ngOnDestroy():void{
     this.clearTimeout();
   }
 
-  startCountdown(){
+  restartCountdown(){
     if(this.init && this.init >0){
+      this.paused = true;
       this.clearTimeout();
       this.countdown = this.init;
-      this.doCountdown();
     }
   }
 
+  toggleCountdown(){
+    this.paused = !this.paused;
+    if(this.paused == false){
+      this.doCountdown();
+    }
+    else{
+      this.clearTimeout();
+    }
+  }
   private doCountdown(){
     this.countdownTimerRef = setTimeout(()=>{
       this.countdown = this.countdown -1;
