@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
 @Component({
   selector: 'app-countdown',
   templateUrl: './countdown.component.html',
@@ -11,21 +10,31 @@ export class CountdownComponent implements OnInit {
   @Output() onComplete = new EventEmitter<void>();
 
   @Input() init: number = null;
+
   public countdownCounter: number = 0;
+  private countdownTimerRef:any = null;
 
   constructor() { }
 
   ngOnInit() {
     this.startCountdown();
   }
-
+  
   doCountdown() {
-    setTimeout(
+    this.countdownTimerRef = setTimeout(
       () => {
-          this.countdownCounter = this.countdownCounter - 1;
-          this.processCountdown();
-        }
-      , 1000);
+        this.countdownCounter = this.countdownCounter - 1;
+        this.processCountdown();
+      }
+      , 1000
+    );
+  }
+  
+  private killMyTimer() {
+    if(this.countdownTimerRef) {
+      clearTimeout(this.countdownTimerRef);
+      this.countdownTimerRef = null;
+    }
   }
   
   processCountdown() {
@@ -44,6 +53,7 @@ export class CountdownComponent implements OnInit {
 
   startCountdown() {
     if (this.init && this.init > 0) {
+      this.killMyTimer();
       this.countdownCounter = this.init;
       this.doCountdown();
     }
